@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.widget.RemoteViews
+import com.erikriosetiawan.mywidgets.NumberGenerator.generate
 
 /**
  * Implementation of App Widget functionality.
@@ -34,10 +35,10 @@ internal fun updateAppWidget(
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int
 ) {
-    val widgetText = context.getString(R.string.appwidget_text)
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.random_number_widget)
-    views.setTextViewText(R.id.appwidget_text, widgetText)
+    val lastUpdate = "Random: ${generate(100)}"
+    views.setTextViewText(R.id.appwidget_text, lastUpdate)
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)
